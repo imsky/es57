@@ -31,6 +31,17 @@ var evens = [2,4,6,8,10];
 console.log(Array.isArray(evens));
 ```
 
+#### Array.prototype.indexOf
+
+`Array.prototype.indexOf` returns the index of an object in the array, if it exists, and `-1` otherwise.
+
+**Replaces:** [`_.indexOf`](http://underscorejs.org/#indexOf), [`$.inArray`](http://api.jquery.com/jquery.inarray/)
+
+```js
+var sites = ['twitter.com', 'facebook.com', 'cnn.com'];
+console.log(sites.indexOf('facebook.com'));
+```
+
 ### String
 
 #### String.prototype.trim
