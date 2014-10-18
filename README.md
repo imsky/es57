@@ -4,7 +4,7 @@
 
 #### Object.keys
 
-`Object.keys` returns an array of all enumerable own properties of an object.
+`Object.keys` returns an array of all enumerable properties of an object.
 
 **Replaces:** [`_.keys`](http://underscorejs.org/#keys)
 
@@ -13,9 +13,19 @@ var dog = {
 name: 'Tank',
 breed: 'Mastiff'
 };
+console.log(Object.keys(dog));
+```
 
-var properties = Object.keys(dog);
-console.log(properties);
+#### Object.getOwnPropertyNames
+
+`Object.getOwnPropertyNames` returns an array of all properties of an object, enumerable or not.
+
+```js
+var person = Object.create({}, {
+name: { value: 'John Rockefeller', enumerable: true},
+netWorth: { value: 1000000, enumerable: false }
+});
+console.log(Object.keys(person));
 ```
 
 ### Array
