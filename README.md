@@ -28,6 +28,21 @@ netWorth: { value: 1000000, enumerable: false }
 console.log(Object.keys(person));
 ```
 
+#### Object.getPrototypeOf
+
+`Object.getPrototypeOf` returns the `[[Prototype]]` property of the object, i.e. the object instantiated to create the current object.
+
+```js
+var Site = function (url) { this.url = url; };
+var github = new Site('http://github.com');
+var obj = github;
+
+while(obj) {
+obj = Object.getPrototypeOf(obj);
+console.log(obj);
+}
+```
+
 ### Array
 
 #### Array.isArray
