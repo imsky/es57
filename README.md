@@ -84,10 +84,22 @@ console.log(message.trim());
 
 #### Date.now
 
-`Date.now` blah blah blah
+`Date.now` returns the number of milliseconds since January 1st, 1970.
 
 **Replaces:** [`_.now`](http://underscorejs.org/#now), [`$.now`](http://api.jquery.com/jQuery.now/)
 
 ```js
 console.log(Date.now());
+```
+
+#### JSON
+
+`JSON.stringify` returns a string representation of a JavaScript object serialized as JSON. `JSON.parse` deserializes a string into a JavaScript object.
+
+```js
+var x = {a: 'foo', b: 'bar'};
+var y = JSON.stringify(x);
+var z = JSON.parse(y);
+console.log(y);
+console.log(z);
 ```
