@@ -71,11 +71,11 @@ console.log(sites.indexOf('fb.com'));
 
 `Array.prototype.lastIndexOf` returns the index of the last occurrence of an object in the array, if it exists, and `-1` otherwise.
 
-**Replaces:** [`_.lastIndexOf`](http://underscorejs.org/#indexOf)
+**Replaces:** [`_.lastIndexOf`](http://underscorejs.org/#lastIndexOf)
 
 ```js
 var sites = ['fb.com', 'twitter.com' 'fb.com'];
-console.log(sites.lastIndexOf('db.com'));
+console.log(sites.lastIndexOf('fb.com'));
 ```
 
 ### String
