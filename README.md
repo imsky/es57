@@ -93,6 +93,28 @@ console.log(message.trim());
 
 ### Miscellaneous
 
+#### Function.prototype.bind
+
+`Function.prototype.bind` returns a **new** function with its context set to the provided object.
+
+**Replaces:** [`_.bind`](http://underscorejs.org/#bind), [`$.proxy`](http://api.jquery.com/jquery.proxy/)
+
+```js
+var movie = {
+name: 'The Godfather',
+director: 'Francis Ford Coppola',
+starring: ['Marlon Brando', 'Al Pacino'],
+summary: function () {
+return this.name + ' directed by ' + this.director + ', starring ' + this.starring.join(' and ');
+}
+};
+
+var summary = movie.summary;
+
+console.log(movie.summary());
+console.log(summary.bind(movie)());
+```
+
 #### Date.now
 
 `Date.now` returns the number of milliseconds since January 1st, 1970.
