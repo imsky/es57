@@ -107,6 +107,8 @@ console.log(Date.now());
 
 `JSON.stringify` returns a string representation of a JavaScript object serialized as JSON. `JSON.parse` deserializes a string into a JavaScript object.
 
+**Replaces:** [JSON2](https://github.com/douglascrockford/JSON-js), [JSON 3](http://bestiejs.github.io/json3/)
+
 ```js
 var x = {a: 'foo', b: 'bar'};
 var y = JSON.stringify(x);
