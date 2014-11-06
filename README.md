@@ -78,6 +78,18 @@ var sites = ['fb.com', 'twitter.com' 'fb.com'];
 console.log(sites.lastIndexOf('fb.com'));
 ```
 
+#### Array.prototype.every
+
+`Array.prototype.every` returns `true` if all the elements of an array pass a user-specified test and `false` otherwise.
+
+**Replaces:** [`_.every`](http://underscorejs.org/#every)
+
+```js
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var allNumbers = numbers.every(function (el) { return !isNaN(el); });
+console.log(allNumbers);
+```
+
 ### String
 
 #### String.prototype.trim
