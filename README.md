@@ -80,7 +80,7 @@ console.log(sites.lastIndexOf('fb.com'));
 
 #### Array.prototype.every
 
-`Array.prototype.every` returns `true` if all the elements of an array pass a user-specified test and `false` otherwise.
+`Array.prototype.every` returns `true` if all elements of an array pass a user-specified test and `false` otherwise.
 
 **Replaces:** [`_.every`](http://underscorejs.org/#every)
 
@@ -88,6 +88,18 @@ console.log(sites.lastIndexOf('fb.com'));
 var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var allNumbers = numbers.every(function (el) { return !isNaN(el); });
 console.log(allNumbers);
+```
+
+### Array.prototype.some
+
+`Array.prototype.some` returns `true` if some elements of an array pass a user-specified test and `false` otherwise.
+
+**Replaces:** [`_.some`](http://underscorejs.org/#some)
+
+```js
+var string = 'es57'.split('');
+var someNumbers = string.some(function (el) { return !isNaN(el); });
+console.log(someNumbers);
 ```
 
 ### String
