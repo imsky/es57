@@ -124,19 +124,15 @@ console.log(message.trim());
 **Replaces:** [`_.bind`](http://underscorejs.org/#bind), [`$.proxy`](http://api.jquery.com/jquery.proxy/)
 
 ```js
-var summary = function () {
-return this.name + ' directed by ' + this.director + ', starring ' + this.starring.join(' and ');
+function identify() {
+return this.name ? "Name's " + this.name : "I have no name";
 };
 
-var movie = {
-name: 'The Godfather',
-director: 'Francis Ford Coppola',
-starring: ['Marlon Brando', 'Al Pacino'],
-summary: summary
-};
+var anonymous = identify;
+var elvis = identify.bind({name: 'Elvis, thank you very much'});
 
-console.log(movie.summary());
-console.log(summary.bind(movie)());
+console.log(anonymous());
+console.log(elvis());
 ```
 
 #### Date.now
