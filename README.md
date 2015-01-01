@@ -102,6 +102,18 @@ var someNumbers = string.some(function (el) { return !isNaN(el); });
 console.log(someNumbers);
 ```
 
+### Array.prototype.map
+
+`Array.prototype.map` returns a *new* array with all elements modified by the provided function.
+
+**Replaces:** [`_.map`](http://underscorejs.org/#map), [`$.map`](http://api.jquery.com/jquery.map/)
+
+```js
+var numbers = [1, 2, 3, 4, 5];
+var squares = numbers.map(function (n) { return n * n; });
+console.log(squares);
+```
+
 ### String
 
 #### String.prototype.trim
