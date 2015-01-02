@@ -90,7 +90,7 @@ var allNumbers = numbers.every(function (el) { return !isNaN(el); });
 console.log(allNumbers);
 ```
 
-### Array.prototype.some
+#### Array.prototype.some
 
 `Array.prototype.some` returns `true` if some elements of an array pass a user-specified test and `false` otherwise.
 
@@ -102,9 +102,9 @@ var someNumbers = string.some(function (el) { return !isNaN(el); });
 console.log(someNumbers);
 ```
 
-### Array.prototype.map
+#### Array.prototype.map
 
-`Array.prototype.map` returns a *new* array with all elements modified by the provided function.
+`Array.prototype.map` returns a **new** array with all elements modified by the provided function.
 
 **Replaces:** [`_.map`](http://underscorejs.org/#map), [`$.map`](http://api.jquery.com/jquery.map/)
 
