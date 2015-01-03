@@ -114,6 +114,18 @@ var squares = numbers.map(function (n) { return n * n; });
 console.log(squares);
 ```
 
+#### Array.prototype.filter
+
+`Array.prototype.filter` returns a **new** array with only those elements that pass a user-specified test.
+
+**Replaces:** [`_.filter`](http://underscorejs.org/#filter)
+
+```js
+var numbers = [1, 2, 3, 4, 5];
+var odds = numbers.filter(function (n) { return n & 1; });
+console.log(odds);
+```
+
 ### String
 
 #### String.prototype.trim
