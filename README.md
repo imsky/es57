@@ -126,6 +126,19 @@ var odds = numbers.filter(function (n) { return n & 1; });
 console.log(odds);
 ```
 
+#### Array.prototype.forEach
+
+`Array.prototype.forEach` executes a function for each element in the array.
+
+**Replaces:** [`_.each`](http://underscorejs.org/#each), [`$.each`](http://api.jquery.com/jquery.each/)
+
+```js
+var exponents = [1, 2, 3, 4, 5];
+exponents.forEach(function (e) {
+console.log(Math.pow(2, e));
+});
+```
+
 ### String
 
 #### String.prototype.trim
