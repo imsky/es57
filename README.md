@@ -52,7 +52,7 @@ console.log(obj);
 **Replaces:** [`_.isArray`](http://underscorejs.org/#isArray), [`$.isArray`](http://api.jquery.com/jquery.isarray/)
 
 ```js
-var evens = [2,4,6,8,10];
+var evens = [2, 4, 6, 8, 10];
 console.log(Array.isArray(evens));
 ```
 
@@ -85,7 +85,7 @@ console.log(sites.lastIndexOf('fb.com'));
 **Replaces:** [`_.every`](http://underscorejs.org/#every)
 
 ```js
-var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var numbers = [1, 2, 3, 4, 5];
 var allNumbers = numbers.every(function (el) { return !isNaN(el); });
 console.log(allNumbers);
 ```
@@ -133,10 +133,11 @@ console.log(odds);
 **Replaces:** [`_.each`](http://underscorejs.org/#each), [`$.each`](http://api.jquery.com/jquery.each/)
 
 ```js
-var exponents = [1, 2, 3, 4, 5];
-exponents.forEach(function (e) {
-console.log(Math.pow(2, e));
+var numbers = [1, 2, 3, 4, 5];
+numbers.forEach(function (exp, index) {
+numbers[index] = Math.pow(2, exp);
 });
+console.log(numbers);
 ```
 
 ### String
@@ -166,7 +167,7 @@ return this.name ? "Name's " + this.name : "I have no name";
 };
 
 var anonymous = identify;
-var elvis = identify.bind({name: 'Elvis, thank you very much'});
+var elvis = identify.bind({name: "Elvis"});
 
 console.log(anonymous());
 console.log(elvis());
