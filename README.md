@@ -43,6 +43,21 @@ console.log(obj);
 }
 ```
 
+#### Object.seal
+
+`Object.seal` prevents new properties from being added to an object and prevents existing properties from being modified if they're not writable.
+
+```js
+var book = {
+name: 'Great Gatsby'
+};
+
+Object.seal(book);
+book.name = 'The Great Gatsby';
+book.author = 'F. Scott Fitzgerald';
+console.log(book.name, book.author);
+```
+
 ### Array
 
 #### Array.isArray
