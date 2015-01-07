@@ -58,6 +58,21 @@ book.author = 'F. Scott Fitzgerald';
 console.log(book.name, book.author);
 ```
 
+#### Object.freeze
+
+`Object.freeze` effectively makes an object immutable: no properties can be added and existing properties can't be modified.
+
+```js
+var book = {
+name: 'Great Gatsby'
+};
+
+Object.freeze(book);
+book.name = 'The Great Gatsby';
+book.author = 'F. Scott Fitzgerald';
+console.log(book.name, book.author);
+```
+
 ### Array
 
 #### Array.isArray
