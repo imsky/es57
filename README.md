@@ -73,6 +73,17 @@ book.author = 'F. Scott Fitzgerald';
 console.log(book.name, book.author);
 ```
 
+#### Object.preventExtensions
+
+`Object.preventExtensions` marks an object as no longer extensible, so that new properties can't be added to it. Properties can still be added through the prototype, however.
+
+```js
+var book = {};
+Object.preventExtensions(book);
+book.name = 'The Great Gatsby';
+console.log(book.name);
+```
+
 ### Array
 
 #### Array.isArray
