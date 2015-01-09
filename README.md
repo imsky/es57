@@ -16,6 +16,19 @@ breed: 'Mastiff'
 console.log(Object.keys(dog));
 ```
 
+#### Object.create
+
+`Object.create` returns a new object with the specified prototype and properties.
+
+```js
+var Dog = function () {};
+Dog.prototype.bark = function () {
+console.log('Bark!');
+};
+var rover = Object.create(Dog.prototype);
+rover.bark();
+```
+
 #### Object.getOwnPropertyNames
 
 `Object.getOwnPropertyNames` returns an array of all properties of an object, enumerable or not.
