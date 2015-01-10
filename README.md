@@ -250,3 +250,12 @@ var z = JSON.parse(y);
 console.log(y);
 console.log(z);
 ```
+
+#### `undefined`
+
+In ECMAScript 5, `undefined` is immutable.
+
+```js
+var undefined = 123;
+console.log(undefined);
+```
