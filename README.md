@@ -13,7 +13,7 @@ var dog = {
 name: 'Tank',
 breed: 'Mastiff'
 };
-console.log(Object.keys(dog));
+console.log(Object.keys(dog)); // ["name", "breed"]
 ```
 
 #### Object.create
@@ -26,7 +26,7 @@ Dog.prototype.bark = function () {
 console.log('Bark!');
 };
 var rover = Object.create(Dog.prototype);
-rover.bark();
+rover.bark(); // Bark!
 ```
 
 #### Object.getOwnPropertyNames
@@ -38,7 +38,7 @@ var person = Object.create({}, {
 name: { value: 'John Rockefeller', enumerable: true},
 netWorth: { value: 1000000, enumerable: false }
 });
-console.log(Object.keys(person));
+console.log(Object.keys(person)); // ["name"]
 ```
 
 #### Object.getPrototypeOf
@@ -68,7 +68,7 @@ name: 'Great Gatsby'
 Object.seal(book);
 book.name = 'The Great Gatsby';
 book.author = 'F. Scott Fitzgerald';
-console.log(book.name, book.author);
+console.log(book.name, book.author); // "The Great Gatsby", undefined
 ```
 
 #### Object.freeze
@@ -83,7 +83,7 @@ name: 'Great Gatsby'
 Object.freeze(book);
 book.name = 'The Great Gatsby';
 book.author = 'F. Scott Fitzgerald';
-console.log(book.name, book.author);
+console.log(book.name, book.author); // "Great Gatsby", undefined
 ```
 
 #### Object.preventExtensions
@@ -94,7 +94,7 @@ console.log(book.name, book.author);
 var book = {};
 Object.preventExtensions(book);
 book.name = 'The Great Gatsby';
-console.log(book.name);
+console.log(book.name); // undefined
 ```
 
 ### Array
@@ -107,7 +107,7 @@ console.log(book.name);
 
 ```js
 var evens = [2, 4, 6, 8, 10];
-console.log(Array.isArray(evens));
+console.log(Array.isArray(evens)); // true
 ```
 
 #### Array.prototype.indexOf
@@ -118,7 +118,7 @@ console.log(Array.isArray(evens));
 
 ```js
 var sites = ['fb.com', 'twitter.com' 'fb.com'];
-console.log(sites.indexOf('fb.com'));
+console.log(sites.indexOf('fb.com')); // 0
 ```
 
 #### Array.prototype.lastIndexOf
@@ -129,7 +129,7 @@ console.log(sites.indexOf('fb.com'));
 
 ```js
 var sites = ['fb.com', 'twitter.com' 'fb.com'];
-console.log(sites.lastIndexOf('fb.com'));
+console.log(sites.lastIndexOf('fb.com')); // 2
 ```
 
 #### Array.prototype.every
@@ -141,7 +141,7 @@ console.log(sites.lastIndexOf('fb.com'));
 ```js
 var numbers = [1, 2, 3, 4, 5];
 var allNumbers = numbers.every(function (el) { return !isNaN(el); });
-console.log(allNumbers);
+console.log(allNumbers); // true
 ```
 
 #### Array.prototype.some
@@ -153,7 +153,7 @@ console.log(allNumbers);
 ```js
 var string = 'es57'.split('');
 var someNumbers = string.some(function (el) { return !isNaN(el); });
-console.log(someNumbers);
+console.log(someNumbers); // true
 ```
 
 #### Array.prototype.map
@@ -165,7 +165,7 @@ console.log(someNumbers);
 ```js
 var numbers = [1, 2, 3, 4, 5];
 var squares = numbers.map(function (n) { return n * n; });
-console.log(squares);
+console.log(squares); // [1, 4, 9, 16, 25]
 ```
 
 #### Array.prototype.filter
@@ -177,7 +177,7 @@ console.log(squares);
 ```js
 var numbers = [1, 2, 3, 4, 5];
 var odds = numbers.filter(function (n) { return n & 1; });
-console.log(odds);
+console.log(odds); // [1, 3, 5]
 ```
 
 #### Array.prototype.forEach
@@ -191,7 +191,7 @@ var numbers = [1, 2, 3, 4, 5];
 numbers.forEach(function (exp, index) {
 numbers[index] = Math.pow(2, exp);
 });
-console.log(numbers);
+console.log(numbers); // [2, 4, 8, 16, 32]
 ```
 
 ### String
@@ -204,7 +204,7 @@ console.log(numbers);
 
 ```js
 var message = '   Hello World  ';
-console.log(message.trim());
+console.log(message.trim()); // "Hello World"
 ```
 
 ### Miscellaneous
@@ -223,8 +223,8 @@ return this.name ? "Name's " + this.name : "I have no name";
 var anonymous = identify;
 var elvis = identify.bind({name: "Elvis"});
 
-console.log(anonymous());
-console.log(elvis());
+console.log(anonymous()); // "I have no name"
+console.log(elvis()); // "Name's Elvis"
 ```
 
 #### Date.now
@@ -247,7 +247,7 @@ console.log(Date.now());
 var x = {a: 'foo', b: 'bar'};
 var y = JSON.stringify(x);
 var z = JSON.parse(y);
-console.log(y);
+console.log(y); // "{"a":"foo","b":"bar"}"
 console.log(z);
 ```
 
@@ -257,5 +257,5 @@ In ECMAScript 5, `undefined` is immutable.
 
 ```js
 var undefined = 123;
-console.log(undefined);
+console.log(undefined); // undefined
 ```
