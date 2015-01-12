@@ -194,6 +194,18 @@ numbers[index] = Math.pow(2, exp);
 console.log(numbers); // [2, 4, 8, 16, 32]
 ```
 
+#### Array.prototype.reduce
+
+`Array.prototype.reduce` returns the value resulting from accumulating the results of a user-specified function applied to an array's element from left to right.
+
+```js
+var numbers = [1, 2, 3, 4, 5];
+var logSum = numbers.reduce(function (prev, curr) {
+return Math.log(prev + curr);
+}, 0);
+console.log(logSum); // 1.8974592060532625
+```
+
 ### String
 
 #### String.prototype.trim
