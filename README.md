@@ -196,14 +196,25 @@ console.log(numbers); // [2, 4, 8, 16, 32]
 
 #### Array.prototype.reduce
 
-`Array.prototype.reduce` returns the value resulting from accumulating the results of a user-specified function applied to an array's element from left to right.
+`Array.prototype.reduce` returns the value resulting from accumulating the results of a user-specified function applied left to right on an array's elements.
 
 ```js
 var numbers = [1, 2, 3, 4, 5];
-var logSum = numbers.reduce(function (prev, curr) {
-return Math.log(prev + curr);
+var sum = numbers.reduce(function (prev, curr) {
+return curr < 3 ? prev + curr : prev * 2;
 }, 0);
-console.log(logSum); // 1.8974592060532625
+console.log(sum); // 24
+```
+#### Array.prototype.reduceRight
+
+`Array.prototype.reduceRight` returns the value resulting from accumulating the results of a user-specified function applied right to left on an array's elements.
+
+```js
+var numbers = [1, 2, 3, 4, 5];
+var sum = numbers.reduceRight(function (prev, curr) {
+return curr < 3 ? prev + curr : prev * 2;
+}, 0);
+console.log(sum); // 3
 ```
 
 ### String
