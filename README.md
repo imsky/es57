@@ -198,6 +198,8 @@ console.log(numbers); // [2, 4, 8, 16, 32]
 
 `Array.prototype.reduce` returns the value resulting from accumulating the results of a user-specified function applied left to right on an array's elements.
 
+**Replaces:** [`_.reduce`](http://underscorejs.org/#reduce)
+
 ```js
 var numbers = [1, 2, 3, 4, 5];
 var sum = numbers.reduce(function (prev, curr) {
@@ -208,6 +210,8 @@ console.log(sum); // 24
 #### Array.prototype.reduceRight
 
 `Array.prototype.reduceRight` returns the value resulting from accumulating the results of a user-specified function applied right to left on an array's elements.
+
+**Replaces:** [`_.reduceRight`](http://underscorejs.org/#reduceRight)
 
 ```js
 var numbers = [1, 2, 3, 4, 5];
