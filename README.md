@@ -242,18 +242,17 @@ Getter and setter functions, used to modify traditional property access/modify b
 
 ```js
 var person = {
-    firstName: 'Carl',
-    lastName: 'Gauss',
     get fullName() {
         return this.firstName + ' ' + this.lastName;
     },
     set fullName(val) {
-        var name = val.split(" ");
+        var name = val.split(' ');
         this.firstName = name[0];
         this.lastName = name[1];
     }
 };
-
+person.firstName = 'Carl';
+person.lastName = 'Gauss';
 console.log(person.fullName);
 person.fullName = 'Isaac Newton';
 console.log(person.firstName, person.lastName);
