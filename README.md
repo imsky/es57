@@ -238,7 +238,7 @@ console.log(message.trim()); // "Hello World"
 
 #### Getters and setters
 
-Getter and setter functions, used to modify traditional property access/modify behavior, can be set for object properties.
+Getter and setter functions, used to modify default property access/modify behavior, can be set for object properties.
 
 ```js
 var person = {
@@ -253,9 +253,9 @@ var person = {
 };
 person.firstName = 'Carl';
 person.lastName = 'Gauss';
-console.log(person.fullName);
+console.log(person.fullName); // "Carl Gauss"
 person.fullName = 'Isaac Newton';
-console.log(person.firstName, person.lastName);
+console.log(person.firstName, person.lastName); // "Isaac" "Newton"
 ```
 
 #### Function.prototype.bind
@@ -266,14 +266,15 @@ console.log(person.firstName, person.lastName);
 
 ```js
 function identify() {
-return this.name ? "Name's " + this.name : "I have no name";
+return this.name;
 };
 
-var anonymous = identify;
-var elvis = identify.bind({name: "Elvis"});
+var name = 'Frank Sinatra';
+var frank = identify;
+var elvis = identify.bind({name: "Elvis Presley"});
 
-console.log(anonymous()); // "I have no name"
-console.log(elvis()); // "Name's Elvis"
+console.log(frank()); // "Frank Sinatra";
+console.log(elvis()); // "Elvis Presley"
 ```
 
 #### Date.now
