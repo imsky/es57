@@ -9,11 +9,11 @@
 **Replaces:** [`_.keys`](http://underscorejs.org/#keys)
 
 ```js
-var dog = {
-name: 'Tank',
-breed: 'Mastiff'
+var car = {
+make: 'BMW',
+model: '745'
 };
-console.log(Object.keys(dog)); // ["name", "breed"]
+console.log(Object.keys(car)); // ["make", "model"]
 ```
 
 #### Object.create
@@ -38,7 +38,7 @@ var person = Object.create({}, {
 name: { value: 'John Rockefeller', enumerable: true},
 netWorth: { value: 1000000, enumerable: false }
 });
-console.log(Object.keys(person)); // ["name"]
+console.log(Object.getOwnPropertyNames(person)); // ["name", "netWorth"]
 ```
 
 #### Object.getPrototypeOf
