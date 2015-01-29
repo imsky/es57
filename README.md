@@ -9,7 +9,9 @@ Function.prototype._bind = function(ctx) {
     var fn = this;
     var empty = function() {};
     var bound = function() {
-        return fn.apply(ctx || this, args.concat(slice.call(arguments)));
+        return fn.apply(
+        this instanceof empty ? this : ctx,
+        args.concat(slice.call(arguments)));
     }
     empty.prototype = fn.prototype;
     bound.prototype = new empty();
@@ -49,8 +51,8 @@ Function.prototype._bind = function() {
     var empty = function() {};
     var bound = function() {
         return fn.apply(
-        // If context is null, set context to current context
-        ctx || this,
+        // Ignore context if called as constructor
+        this instanceof empty ? this : ctx,
         // Prepend outer arguments to current arguments
         args.concat(slice.call(arguments)));
     }
@@ -60,4 +62,34 @@ Function.prototype._bind = function() {
     // Returns a new function with optional prepended arguments, called in specified context
     return bound;
 }
+```
+
+## Curry
+
+Example:
+
+```js
+Function.prototype._curry = function() {
+    var slice = [].slice;
+    var fn = this;
+
+    var curry = function() {
+        var args = slice.call(arguments);
+
+        return function() {
+            var largs = args.concat(slice.call(arguments));
+            return (largs.length >= fn.length ? fn : curry).apply(null, largs);
+        };
+    };
+
+    return (arguments.length >= fn.length ? fn : curry).apply(null, arguments);
+}
+
+function triple(a, b, c) {
+    return a + b + c;
+}
+
+console.log(triple._curry('New')('York')('City'));
+console.log(triple._curry('Graphical')('User', 'Interface'));
+console.log(triple._curry()(1)()()()(2)()()(3));
 ```
