@@ -77,8 +77,8 @@ Function.prototype._curry = function() {
         var args = slice.call(arguments);
 
         return function() {
-            var largs = args.concat(slice.call(arguments));
-            return (largs.length >= fn.length ? fn : curry).apply(null, largs);
+            var nargs = args.concat(slice.call(arguments));
+            return (nargs.length >= fn.length ? fn : curry).apply(null, nargs);
         };
     };
 
@@ -91,5 +91,31 @@ function triple(a, b, c) {
 
 console.log(triple._curry('New')('York')('City'));
 console.log(triple._curry('Graphical')('User', 'Interface'));
-console.log(triple._curry()(1)()()()(2)()()(3));
+console.log(triple._curry()(1)()(2)()(3));
+```
+
+With comments:
+
+```js
+Function.prototype._curry = function() {
+    // Shorthand for Array.prototype.slice
+    var slice = [].slice;
+    // Reference to the function being curried
+    var fn = this;
+
+    var curry = function() {
+        var args = slice.call(arguments);
+
+        // Return a closure to continue application
+        return function() {
+            // Append the arguments of the current function to existing arguments
+            var nargs = args.concat(slice.call(arguments));
+            // If there aren't enough arguments yet, return closure, otherwise apply arguments to curried function
+            return (nargs.length >= fn.length ? fn : curry).apply(null, nargs);
+        };
+    };
+
+    // If the call has as many arguments as the function, call the function directly
+    return (arguments.length >= fn.length ? fn : curry).apply(null, arguments);
+}
 ```
