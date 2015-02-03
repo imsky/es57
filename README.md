@@ -15,6 +15,7 @@ Function.prototype._bind = function(ctx) {
     }
     empty.prototype = fn.prototype;
     bound.prototype = new empty();
+
     return bound;
 }
 
@@ -59,6 +60,7 @@ Function.prototype._bind = function() {
     // Used for inheriting properties on the prototype chain of the bound function
     empty.prototype = fn.prototype;
     bound.prototype = new empty();
+
     // Returns a new function with optional prepended arguments, called in specified context
     return bound;
 }
@@ -74,7 +76,7 @@ Function.prototype._curry = function() {
     var fn = this;
 
     var curry = function() {
-        var args = slice.call(arguments);
+        console.log(args)
 
         return function() {
             var nargs = args.concat(slice.call(arguments));
@@ -108,7 +110,7 @@ Function.prototype._curry = function() {
 
         // Return a closure to continue application
         return function() {
-            // Append the arguments of the current function to existing arguments
+            // Append the arguments of the current call to existing arguments
             var nargs = args.concat(slice.call(arguments));
             // If there aren't enough arguments yet, return closure, otherwise apply arguments to curried function
             return (nargs.length >= fn.length ? fn : curry).apply(null, nargs);
@@ -118,4 +120,30 @@ Function.prototype._curry = function() {
     // If the call has as many arguments as the function, call the function directly
     return (arguments.length >= fn.length ? fn : curry).apply(null, arguments);
 }
+```
+
+## Flatten
+
+```js
+Object.defineProperty(Array.prototype, '_flatten', {
+    value: function() {
+        function flatten(arr) {
+            var i = 0;
+            var len = arr.length;
+            var curr;
+            var ret = [];
+
+            for (; i < len; i++) {
+                curr = arr[i];
+                ret = ret.concat(curr.constructor === Array ? flatten(curr) : curr);
+            }
+            return ret;
+        }
+
+        return flatten(this);
+    }
+});
+
+console.log([1,2,[3,[4,[],[],[[5]]]]]._flatten());
+console.log([[[[1],[2],[3],[4],[[5]]]]]._flatten());
 ```
