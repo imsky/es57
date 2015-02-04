@@ -147,3 +147,29 @@ Object.defineProperty(Array.prototype, '_flatten', {
 console.log([1,2,[3,[4,[],[],[[5]]]]]._flatten());
 console.log([[[[1],[2],[3],[4],[[5]]]]]._flatten());
 ```
+
+With comments:
+
+```js
+// Ensure that the function is not enumerable
+Object.defineProperty(Array.prototype, '_flatten', {
+    value: function() {
+        function flatten(arr) {
+            var i = 0;
+            var len = arr.length;
+            var curr;
+            var ret = [];
+
+            for (; i < len; i++) {
+                curr = arr[i];
+                // Concatenate a value directly if it's not an array, and if it is, concatenate its flattened representation, which is a flat array
+                ret = ret.concat(curr.constructor === Array ? flatten(curr) : curr);
+            }
+            return ret;
+        }
+
+        // Start flatten recursion
+        return flatten(this);
+    }
+});
+```
