@@ -157,3 +157,44 @@ Object.defineProperty(Array.prototype, '_flatten', {
     }
 });
 ```
+
+## Memoize
+
+```js
+Function.prototype._memoize = function() {
+    var cache = {};
+    var fn = this;
+    var memoize = function() {
+        var key = JSON.stringify(arguments);
+        if (!cache[key]) {
+            cache[key] = fn.apply(fn, arguments);
+        }
+        return cache[key];
+    }
+
+    return memoize;
+}
+
+function fib(n) {
+    if (n < 2) return n;
+    return fib(n - 1) + fib(n - 2);
+}
+
+function timer(fn) {
+    var start = Date.now();
+    fn();
+    return Date.now() - start;
+}
+
+function test() {
+    return timer(function() {
+        for (var i = 0; i < 10; i++) {
+            fib(35);
+        }
+    })
+}
+
+console.log(test());
+fib = fib._memoize();
+console.log(test());
+```
