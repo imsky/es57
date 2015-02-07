@@ -198,3 +198,23 @@ console.log(test());
 fib = fib._memoize();
 console.log(test());
 ```
+
+With comments:
+
+```js
+Function.prototype._memoize = function() {
+    var cache = {};
+    var fn = this;
+    var memoize = function() {
+        // Set key to string of arguments, which works for multiple primitive arguments
+        var key = JSON.stringify(arguments);
+        if (!cache[key]) {
+            // Cache the result of the function if not already in cache
+            cache[key] = fn.apply(fn, arguments);
+        }
+        return cache[key];
+    }
+
+    return memoize;
+}
+```
