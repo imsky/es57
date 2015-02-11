@@ -3,19 +3,27 @@
 Example:
 
 ```js
-Function.prototype._bind = function(ctx) {
+Function.prototype._bind = function() {
+    // Shorthand for Array.prototype.slice
     var slice = [].slice;
+    // All other arguments prepended to the bound call follow the context
     var args = slice.call(arguments, 1);
+    // Reference to the function being bound
     var fn = this;
+    // Empty function used to replicate prototype chain
     var empty = function() {};
     var bound = function() {
         return fn.apply(
+        // Ignore context if called as constructor
         this instanceof empty ? this : ctx,
+        // Prepend outer arguments to current arguments
         args.concat(slice.call(arguments)));
-    }
+    };
+    // Used for inheriting properties on the prototype chain of the bound function
     empty.prototype = fn.prototype;
     bound.prototype = new empty();
 
+    // Returns a new function with optional prepended arguments, called in specified context
     return bound;
 }
 
@@ -38,65 +46,9 @@ var london = englishCity('London');
 console.log(Place.prototype.toString.call(london));
 ```
 
-With comments:
-
-```js
-Function.prototype._bind = function() {
-    // Shorthand for Array.prototype.slice
-    var slice = [].slice;
-    // All other arguments prepended to the bound call follow the context
-    var args = slice.call(arguments, 1);
-    // Reference to the function being bound
-    var fn = this;
-    // Empty function used to replicate prototype chain
-    var empty = function() {};
-    var bound = function() {
-        return fn.apply(
-        // Ignore context if called as constructor
-        this instanceof empty ? this : ctx,
-        // Prepend outer arguments to current arguments
-        args.concat(slice.call(arguments)));
-    }
-    // Used for inheriting properties on the prototype chain of the bound function
-    empty.prototype = fn.prototype;
-    bound.prototype = new empty();
-
-    // Returns a new function with optional prepended arguments, called in specified context
-    return bound;
-}
-```
-
 ## Curry
 
 Example:
-
-```js
-Function.prototype._curry = function() {
-    var slice = [].slice;
-    var fn = this;
-
-    var curry = function() {
-        console.log(args)
-
-        return function() {
-            var nargs = args.concat(slice.call(arguments));
-            return (nargs.length >= fn.length ? fn : curry).apply(null, nargs);
-        };
-    };
-
-    return (arguments.length >= fn.length ? fn : curry).apply(null, arguments);
-}
-
-function triple(a, b, c) {
-    return a + b + c;
-}
-
-console.log(triple._curry('New')('York')('City'));
-console.log(triple._curry('Graphical')('User', 'Interface'));
-console.log(triple._curry()(1)()(2)()(3));
-```
-
-With comments:
 
 ```js
 Function.prototype._curry = function() {
@@ -120,27 +72,17 @@ Function.prototype._curry = function() {
     // If the call has as many arguments as the function, call the function directly
     return (arguments.length >= fn.length ? fn : curry).apply(null, arguments);
 }
+
+function triple(a, b, c) {
+    return a + b + c;
+}
+
+console.log(triple._curry('New')('York')('City'));
+console.log(triple._curry('Graphical')('User', 'Interface'));
+console.log(triple._curry()(1)()(2)()(3));
 ```
 
 ## Flatten
-
-```js
-Object.defineProperty(Array.prototype, '_flatten', {
-    value: function() {
-        function flatten(arr) {
-            return arr.reduce(function(prev, curr) {
-                return prev.concat(curr.constructor === Array ? flatten(curr) : curr);
-            }, []);
-        }
-        return flatten(this);
-    }
-});
-
-console.log([1,2,[3,[4,[],[],[[5]]]]]._flatten());
-console.log([[[[1],[2],[3],[4],[[5]]]]]._flatten());
-```
-
-With comments:
 
 ```js
 // Ensure that the function is not enumerable
@@ -156,6 +98,9 @@ Object.defineProperty(Array.prototype, '_flatten', {
         return flatten(this);
     }
 });
+
+console.log([1,2,[3,[4,[],[],[[5]]]]]._flatten());
+console.log([[[[1],[2],[3],[4],[[5]]]]]._flatten());
 ```
 
 ## Memoize
@@ -165,8 +110,10 @@ Function.prototype._memoize = function() {
     var cache = {};
     var fn = this;
     var memoize = function() {
+        // Set key to string of arguments, which works for multiple primitive arguments
         var key = JSON.stringify(arguments);
         if (!cache[key]) {
+            // Cache the result of the function if not already in cache
             cache[key] = fn.apply(fn, arguments);
         }
         return cache[key];
@@ -191,30 +138,10 @@ function test() {
         for (var i = 0; i < 10; i++) {
             fib(35);
         }
-    })
+    });
 }
 
 console.log(test());
 fib = fib._memoize();
 console.log(test());
-```
-
-With comments:
-
-```js
-Function.prototype._memoize = function() {
-    var cache = {};
-    var fn = this;
-    var memoize = function() {
-        // Set key to string of arguments, which works for multiple primitive arguments
-        var key = JSON.stringify(arguments);
-        if (!cache[key]) {
-            // Cache the result of the function if not already in cache
-            cache[key] = fn.apply(fn, arguments);
-        }
-        return cache[key];
-    }
-
-    return memoize;
-}
 ```
