@@ -3,7 +3,7 @@
 Example:
 
 ```js
-Function.prototype._bind = function() {
+Function.prototype.bind = function() {
     // Shorthand for Array.prototype.slice
     var slice = [].slice;
     // All other arguments prepended to the bound call follow the context
@@ -37,11 +37,11 @@ Place.prototype.toString = function() {
     return this.city + ', ' + this.country;
 }
 
-var americanCity = Place._bind(null, 'USA');
+var americanCity = Place.bind(null, 'USA');
 var newYork = new americanCity('New York City');
 console.log(String(newYork));
 
-var englishCity = Place._bind({}, 'England');
+var englishCity = Place.bind({}, 'England');
 var london = englishCity('London');
 console.log(Place.prototype.toString.call(london));
 ```
@@ -51,7 +51,7 @@ console.log(Place.prototype.toString.call(london));
 Example:
 
 ```js
-Function.prototype._curry = function() {
+Function.prototype.curry = function() {
     // Shorthand for Array.prototype.slice
     var slice = [].slice;
     // Reference to the function being curried
@@ -77,16 +77,16 @@ function triple(a, b, c) {
     return a + b + c;
 }
 
-console.log(triple._curry('New')('York')('City'));
-console.log(triple._curry('Graphical')('User', 'Interface'));
-console.log(triple._curry()(1)()(2)()(3));
+console.log(triple.curry('New')('York')('City'));
+console.log(triple.curry('Graphical')('User', 'Interface'));
+console.log(triple.curry()(1)()(2)()(3));
 ```
 
 ## Flatten
 
 ```js
 // Ensure that the function is not enumerable
-Object.defineProperty(Array.prototype, '_flatten', {
+Object.defineProperty(Array.prototype, 'flatten', {
     value: function() {
         function flatten(arr) {
             // Continuously concatenate to initial empty array
@@ -99,14 +99,14 @@ Object.defineProperty(Array.prototype, '_flatten', {
     }
 });
 
-console.log([1,2,[3,[4,[],[],[[5]]]]]._flatten());
-console.log([[[[1],[2],[3],[4],[[5]]]]]._flatten());
+console.log([1,2,[3,[4,[],[],[[5]]]]].flatten());
+console.log([[[[1],[2],[3],[4],[[5]]]]].flatten());
 ```
 
 ## Memoize
 
 ```js
-Function.prototype._memoize = function() {
+Function.prototype.memoize = function() {
     var cache = {};
     var fn = this;
     var memoize = function() {
@@ -142,6 +142,6 @@ function test() {
 }
 
 console.log(test());
-fib = fib._memoize();
+fib = fib.memoize();
 console.log(test());
 ```
